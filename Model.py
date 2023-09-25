@@ -3,6 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 
+
+
+
+
 # This code takes the users input and assigns them to a variable
 average_rent = float(input("What is the average rent? "))
 house_supply = float(input("What is the supply of houses? "))
