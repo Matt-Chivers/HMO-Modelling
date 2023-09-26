@@ -42,7 +42,7 @@ def plot_graph():
     vertical_line_x = [house_supply, house_supply]
     vertical_line_y = [min(y_demand), max(y_demand)]
 
-    # Plot the supply curve, demand curve, and the vertical line
+    # Plot the supply curve, demand curve
     plt.figure(figsize=(8, 6))
     plt.plot(x, y_demand, label='Demand Curve')
     plt.axvline(x=house_supply, color='green', linestyle='--', label='Supply Curve')
