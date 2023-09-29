@@ -21,7 +21,6 @@ def calculate_missing_parameter(params, target_parameter):
             elif target_parameter == 'price':
                 params[target_parameter] = (params['quant'] / params['a']) ** (-1 / params['e'])
             elif target_parameter == 'e':
-<<<<<<< HEAD
                 params[target_parameter] = -math.log(params['quant'] / params['a'], params['price'])
             elif target_parameter == 'a':
                 params[target_parameter] = params['quant'] / (params['price'] ** -params['e'] )    
@@ -32,18 +31,6 @@ print(calculate_missing_parameter(params, target_parameter))
 
 
 
-=======
-                params[target_parameter] = -math.log(params['quant'], params['price'])
-            elif target_parameter == 'a':
-                params[target_parameter] = params['quant'] / (params['price'] ** -params['e'] )    
-            return params[target_parameter]
-            
-print(calculate_missing_parameter(params, target_parameter)) 
-# Calculate the missing parameter based on the specified relationship quant = a * price^(-e)
-
-    
-    
->>>>>>> 3ef207a7ed19f5e0120212559cf3da3b2757434f
 
 
 
@@ -54,8 +41,4 @@ print(calculate_missing_parameter(params, target_parameter))
 #         self.assertAlmostEqual(result, 4.0, places=2)  # 'a' is calculated based on the relationship
 
 # if __name__ == '__main__':
-<<<<<<< HEAD
 #     unittest.main()
-=======
-#     unittest.main()
->>>>>>> 3ef207a7ed19f5e0120212559cf3da3b2757434f
