@@ -4,7 +4,7 @@ import math
 # Define a dictionary to hold the initial parameter values
 params = {
     'quant': 1,
-    'price': 0,
+    'price': 1111,
     'e': 1,
     'a': 3,
 }
