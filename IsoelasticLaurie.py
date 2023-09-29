@@ -3,9 +3,9 @@ import math
 
 # Define a dictionary to hold the initial parameter values
 params = {
-    'quant': 3,
-    'price': 10,
-    'e': 0,
+    'quant': 1,
+    'price': 0,
+    'e': 1,
     'a': 3,
 }
 
@@ -29,8 +29,12 @@ def calculate_missing_parameter(params, target_parameter):
 print(calculate_missing_parameter(params, target_parameter)) 
 # Calculate the missing parameter based on the specified relationship quant = a * price^(-e)
 
-
-
+elif target_parameter == 'a':
+    params[target_parameter] = params['quant'] / (params['price'] ** -params['e'] )    
+return params[target_parameter]
+            
+print(calculate_missing_parameter(params, target_parameter)) 
+# Calculate the missing parameter based on the specified relationship quant = a * price^(-e)
 
 
 
