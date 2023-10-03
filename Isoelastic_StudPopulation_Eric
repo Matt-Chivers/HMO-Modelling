@@ -1,0 +1,8 @@
+# Student Population data: 2016/17:  2017/18:  2018/19: 8,984 2019/20: 9,224 2020/21: 10,119 2021/22: 10,425 2022/23: 
+
+# Solve equation for demand
+a = params['quant'] / (params['price'] ** -params['elas'])
+
+# Define the isoelastic demand function
+def isoelastic_demand(p, a, elas):
+    return a * p ** (-elas)
