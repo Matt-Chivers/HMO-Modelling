@@ -29,15 +29,13 @@ target_parameter = 'elas'  # Replace with the parameter you want to calculate
 calculate_missing_parameter(params, target_parameter)
 print(f'{target_parameter}: {round(params[target_parameter], 2)}')
 
-# Solve equation for demand
-a = params['quant'] / (params['price'] ** -params['elas'])
-
 # Define the isoelastic demand function
-def isoelastic_demand(p, a, elas):
-    return a * p ** (-elas)
+def isoelastic_demand(params):
+    a = params['quant'] / (params['price'] ** -params['elas'])
+    return a * p ** (-elas), a
 
 # Calculate demand quantity for the given price
-q_demand = isoelastic_demand(params['price'], a, params['elas'])
+
 
 # Generate a range of p values (price values)
 p_values = np.linspace(500, 1000, 100)
@@ -66,26 +64,25 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
+
 #Define Counterfactual method
 def counterfactual(params):
     counterfactual_percent = input("Counterfactual: What percentage would you like " + counterfactual_parameter + "to be increase / decrease by? If you do not want to add a change, type 0: " )
-    counterfactual_quant = 0
-    counterfactual_price = 0    
-    counterfactual_elas = 0    
-    counterfactual_x = 0
-    if counterfactual_percent == 'quant':
-        counterfactual_quant = params['quant'] * (1 + (counterfactual_percent / 100))
-    elif counterfactual_percent == 'price': 
-        counterfactual_price = params['price'] * (1 + (counterfactual_percent / 100))
-    elif counterfactual_percent == 'elas':
-        counterfactual_elas = params['elas'] * (1 + (counterfactual_percent / 100))  
-    elif counterfactual_x == 'x1':
-        counterfactual_x = params['x1'] * (1 + (counterfactual_x / 100))
 
+    if counterfactual_percent == 'quant':
+        params['quant'] = params['quant'] * (1 + (counterfactual_percent / 100))
+    elif counterfactual_percent == 'price': 
+        params['price'] = params['price'] * (1 + (counterfactual_percent / 100))
+    elif counterfactual_percent == 'elas':
+        params['elas'] = params['elas'] * (1 + (counterfactual_percent / 100))  
+    elif counterfactual_percent == 'x1':
+        params['x1'] = params['x1'] * (1 + (counterfactual_percent / 100))
+    return params 
+
+def counterfactual_isoelastic(params):
+    isoelastic_demand(p, a, elas)
 
          
 
 
 counterfactual_parameter = 'price' # Replace with parameter you want to add a counterfactual to
-
-counterfactual(params)
