@@ -29,4 +29,3 @@ target_parameter = 'elas'  # Replace with the parameter you want to calculate
 calculate_missing_parameter(params, target_parameter)
 print(f'{target_parameter}: {round(params[target_parameter], 2)}')
 
-def 
