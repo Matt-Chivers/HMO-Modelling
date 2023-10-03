@@ -26,8 +26,4 @@ def calculate_missing_parameter(params, target_parameter):
                 params[target_parameter] = params['quant'] / (params['price'] ** -params['e'] )    
             return params[target_parameter]
             
-<<<<<<< HEAD
 print(calculate_missing_parameter(params, target_parameter))
-=======
-print(calculate_missing_parameter(params, target_parameter))
->>>>>>> 41b0858e01a679b25b70d93782b8150796c6b559
