@@ -20,7 +20,7 @@ HMO_provision = {
     '2019/20': 7163,
     '2020/21': 6857,
     '2021/22': 5966,
-    #'2022/23': 4347 You can fill in the population for 2022/23 when you have the data
+    '2022/23': 4347 
 }
 
 import numpy as np
