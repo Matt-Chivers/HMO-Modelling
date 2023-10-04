@@ -32,7 +32,7 @@ student_population = {
 }
 
 # HMO Supply data for each academic year
-student_population = {
+HMO_provision = {
     '2018/19': 7764,
     '2019/20': 7163,
     '2020/21': 6857,
