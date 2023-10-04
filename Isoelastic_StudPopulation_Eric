@@ -28,7 +28,7 @@ student_population = {
     '2019/20': 9224,
     '2020/21': 10119,
     '2021/22': 10425,
-    '2022/23': None,  # You can fill in the population for 2022/23 when you have the data
+    #'2022/23': None,  # You can fill in the population for 2022/23 when you have the data
 }
 
 # Define a function to calculate demand for a given year
@@ -53,7 +53,7 @@ p_values = np.linspace(0, 1000, 100)
 # Calculate and store demand for each academic year
 demand_data = {}
 for year in student_population.keys():
-    demand_data[year] = calculate_demand(year, params)
+    demand_data[year] = calc_demand(year, params)
 
 # Print demand for each year
 for year, demand in demand_data.items():
