@@ -6,10 +6,27 @@
 # 2020/21: 10,119 
 # 2021/22: 10,425 
 # 2022/23: 
+# Student Population data for each academic year
+student_population = {
+    '2018/19': 8984,
+    '2019/20': 9224,
+    '2020/21': 10119,
+    '2021/22': 10425,
+#    '2022/23': None,  # You can fill in the population for 2022/23 when you have the data
+}
+# HMO Supply data for each academic year
+HMO_provision = {
+    '2018/19': 7764,
+    '2019/20': 7163,
+    '2020/21': 6857,
+    '2021/22': 5966,
+    '2022/23': 4347 
+}
+
+import numpy as np
+print(np.__version__)
 
 # Define a dictionary to hold the initial parameter values
-# x1 is the STUDENT POPULATION
-
 params = {
     'quant': 6802,
     'price': 700,
@@ -32,7 +49,7 @@ student_population = {
 }
 
 # Define a function to calculate demand for a given year
-def calc_demand(year, params):
+def calc_isodemand(year, params):
     a = params['quant'] / (params['price'] ** -params['elas'])
     return [isoelastic_demand(p, a, params['elas'], year) for p in p_values]
 
@@ -48,7 +65,7 @@ params = {
 }
 
 # Generate a range of price values
-p_values = np.linspace(0, 1000, 100)
+p_values = np.linspace(400, 900, 100)
 
 # Calculate and store demand for each academic year
 demand_data = {}
@@ -60,4 +77,5 @@ for year, demand in demand_data.items():
     print(f'Demand for {year}:')
     for p, q in zip(p_values, demand):
         print(f'Price: {p}, Demand: {q}')
+
 
