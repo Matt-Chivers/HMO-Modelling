@@ -19,12 +19,12 @@ plt.show()
 def model_f(x, a, b, c):
     return a*(x-b)**2 + c
 
-popt, pcov = curve_fit(model_f, x_data, y_data, p0=[3,2,-16])
+popt, pcov = curve_fit(model_f, x_data, y_data)
 
 a_opt, b_opt, c_opt = popt
 x_model = np.linspace(min(x_data), max(x_data), 100)
 y_model = model_f(x_model, a_opt, b_opt, c_opt)
 
-plt.scatter(x_data,y_data)
-plt.plot(x_model,y_model, color='r')
+plt.scatter(x_data, y_data)
+plt.plot(x_model, y_model, label='', color='r')
 plt.show()
