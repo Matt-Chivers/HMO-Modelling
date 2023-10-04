@@ -6,7 +6,14 @@
 # 2020/21: 10,119 
 # 2021/22: 10,425 
 # 2022/23: 
-
+# Student Population data for each academic year
+student_population = {
+    '2018/19': 8984,
+    '2019/20': 9224,
+    '2020/21': 10119,
+    '2021/22': 10425,
+#    '2022/23': None,  # You can fill in the population for 2022/23 when you have the data
+}
 # HMO Supply data for each academic year
 HMO_provision = {
     '2018/19': 7764,
