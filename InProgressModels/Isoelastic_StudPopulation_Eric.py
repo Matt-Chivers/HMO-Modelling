@@ -16,11 +16,10 @@ student_population = {
 }
 # HMO Supply data for each academic year
 HMO_provision = {
-    '2018/19': 7764,
-    '2019/20': 7163,
-    '2020/21': 6857,
-    '2021/22': 5966,
-    '2022/23': 4347 
+    '2018/19': 13036,
+    '2019/20': 12953,
+    '2020/21': 10415,
+    '2021/22': 8169,
 }
 
 import numpy as np
