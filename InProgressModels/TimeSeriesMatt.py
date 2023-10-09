@@ -5,7 +5,7 @@ from scipy.optimize import curve_fit
 # Define a dictionary to hold the initial parameter values
 params = {
     'elas': 0.67,
-    'x1': 54.27,
+    'x1': 54.77,
 }
 
 # Define the student population dictionary
@@ -23,7 +23,7 @@ HMO_provision = {
     '2019/20': 12953,
     '2020/21': 10415,
     '2021/22': 8619,
-    '2022/23': 6802,  # !!!used to calibrate x1
+    '2022/23': 6802, 
 }
 
 # Create an empty list to store the price values
@@ -38,8 +38,7 @@ for academic_year, population in student_population.items():
         continue
     price = (quant / (params['x1'] * population)) ** (-1 / params['elas'])
     price_values.append(price)  # Append the calculated price to the list
-    print(f"{academic_year}: {price}")
-    print(f"{quant}")
+    print("Montly rental price for " + f"{academic_year}: {price}")
 
 # Must have 5 data points in each array
 x_data = np.array([2018, 2019, 2020, 2021, 2022])
@@ -63,8 +62,8 @@ y_model = model_f(x_model, a_opt1, b_opt1, c_opt1)
 fig, axs = plt.subplots(1, 1, figsize=(8, 4))
 
 # Plot data set 1 on the subplot
-axs.scatter(x_data, y_data, label='Data Set 1')
-axs.plot(x_model, y_model, label='Model 1', color='r')
+axs.scatter(x_data, y_data, label='Data Set')
+axs.plot(x_model, y_model, label='Trend', color='r')
 axs.set_title('Time-Series Equilibrium Price')
 axs.set_xlabel('Time')
 axs.set_ylabel('Point of Equilibrium')
