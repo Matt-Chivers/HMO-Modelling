@@ -38,3 +38,4 @@ for academic_year, population in student_population.items():
     print(f"{quant}")
    # print(price_values)
     
+print(price_values)

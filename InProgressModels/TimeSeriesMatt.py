@@ -1,16 +1,56 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
 from scipy.optimize import curve_fit
 
-# Must have 40 data points in each array
+# Define a dictionary to hold the initial parameter values
+params = {
+    'elas': 0.67,
+    'x1': 3,
+}
+
+# Define the student population dictionary
+student_population = {
+    '2018/19': 8984,
+    '2019/20': 9224,
+    '2020/21': 10119,
+    '2021/22': 10425,
+    '2022/23': 8619,  # Updated population for 2022/23
+}
+
+# Define the student population dictionary
+HMO_provision = {
+    '2018/19': 13036,
+    '2019/20': 12953,
+    '2020/21': 10415,
+    '2021/22': 8619,
+    '2022/23': 6802,  # !!!used to calibrate x1
+}
+
+# Create an empty list to store the price values
+price_values = []
+
+# Iterate over the keys (academic years) in the dictionary and calculate price
+for academic_year, population in student_population.items():
+    # Get the quant value from the HMO_provision dictionary based on the academic year
+    quant = HMO_provision.get(academic_year, 0)  # Use 0 as a default value if the academic year is not found
+    if population == 0:
+        # Handle the case where population is 0 (or None) by skipping the calculation
+        continue
+    price = (quant / (params['x1'] * population)) ** (-1 / params['elas'])
+    price_values.append(price)  # Append the calculated price to the list
+    print(f"{academic_year}: {price}")
+    print(f"{quant}")
+
+print(price_values)
+
+# Must have 5 data points in each array
 # Data set 1
 x1_data = np.array([2018, 2019, 2020, 2021, 2022])
-y1_data = np.array([3378, 3367, 3011, 2630, 2692])
+y1_data = np.array(price_values[:len(x1_data)])  # Use the first 5 elements of price_values for y1_data
 
-# Data set 2
+# Data set 2 (x2_data remains the same, and we use a subset of price_values for y2_data)
 x2_data = np.array([2018, 2019, 2020, 2021, 2022])
-y2_data = np.array([1, 2, 3, 4, 5])
+y2_data = np.array(price_values[:len(x2_data)])
 
 # Define the model function
 def model_f(x, a, b, c):
@@ -22,14 +62,14 @@ x2_custom = np.arange(min(x2_data), max(x2_data) + 1)
 
 # Fit the model to data set 1 with initial guesses and a different optimization method
 initial_guess = (1.0, 2019.0, 3000.0)  # Adjust these initial values as needed
-popt1, pcov1 = curve_fit(model_f, x1_data, y1_data, p0=initial_guess, method='lm')
+popt1, pcov1 = curve_fit(model_f, x1_data, y1_data, p0=initial_guess)
 a_opt1, b_opt1, c_opt1 = popt1
 x1_model = np.linspace(min(x1_custom), max(x1_custom), 100)
 y1_model = model_f(x1_model, a_opt1, b_opt1, c_opt1)
 
 # Similarly, fit the model to data set 2
 initial_guess = (1.0, 2019.0, 3.0)  # Adjust these initial values as needed
-popt2, pcov2 = curve_fit(model_f, x2_data, y2_data, p0=initial_guess, method='lm')
+popt2, pcov2 = curve_fit(model_f, x2_data, y2_data, p0=initial_guess)
 a_opt2, b_opt2, c_opt2 = popt2
 x2_model = np.linspace(min(x2_custom), max(x2_custom), 100)
 y2_model = model_f(x2_model, a_opt2, b_opt2, c_opt2)
@@ -40,8 +80,9 @@ fig, axs = plt.subplots(1, 2, figsize=(12, 4))
 # Plot data set 1 on the first subplot
 axs[0].scatter(x1_data, y1_data, label='Data Set 1')
 axs[0].plot(x1_model, y1_model, label='Model 1', color='r')
-axs[0].set_title('Data Set 1')
-axs[0].set_xlabel('Time')  # Add x-axis label
+axs[0].set_title('Time-Series 1')
+axs[0].set_xlabel('Time')
+axs[0].set_ylabel('Point of Equilibrium')
 
 # Set custom x-axis ticks and labels for the first subplot
 axs[0].set_xticks(x1_custom)
@@ -50,8 +91,9 @@ axs[0].set_xticklabels(x1_custom)
 # Plot data set 2 on the second subplot
 axs[1].scatter(x2_data, y2_data, label='Data Set 2')
 axs[1].plot(x2_model, y2_model, label='Model 2', color='r')
-axs[1].set_title('Data Set 2')
-axs[1].set_xlabel('Time')  # Add x-axis label
+axs[1].set_title('Time-Series 2')
+axs[1].set_xlabel('Time')
+axs[1].set_ylabel('Point of Equilibrium')
 
 # Set custom x-axis ticks and labels for the second subplot
 axs[1].set_xticks(x2_custom)
