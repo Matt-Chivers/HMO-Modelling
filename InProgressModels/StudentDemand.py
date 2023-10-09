@@ -36,6 +36,5 @@ for academic_year, population in student_population.items():
     price_values.append(price)  # Append the calculated price to the list
     print(f"{academic_year}: {price}")
     print(f"{quant}")
-    print(f"{population}")
-    print(price_values)
+   # print(price_values)
     
