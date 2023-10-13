@@ -5,6 +5,7 @@ params = {
     'elas': .67,
     'x1': 1284443.7,
 }
+
 # Define the student population dictionary
 student_population = {
     '2018/19': 8984,
@@ -19,7 +20,7 @@ HMO_provision = {
     '2019/20': 12953,
     '2020/21': 10415,
     '2021/22': 8619,
-    # '2022/23': None,  # You can fill in the population for 2022/23 when you have the data
+    '2022/23': 6802,  # !!!used to calibrate x1
 }
 
 # Create an empty list to store the price values
@@ -34,6 +35,6 @@ for academic_year, population in student_population.items():
     price_values.append(price)  # Append the calculated price to the list
     print(f"{academic_year}: {price}")
     print(f"{quant}")
-    print(f"{population}")
-    print(price_values)
+   # print(price_values)
     
+print(price_values)

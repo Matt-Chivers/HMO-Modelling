@@ -68,7 +68,7 @@ p_values = np.linspace(400, 900, 100)
 # Calculate and store demand for each academic year
 demand_data = {}
 for year in student_population.keys():
-    demand_data[year] = calc_demand(year, params)
+    demand_data[year] = calc_isodemand(year, params)
 
 # Print demand for each year
 for year, demand in demand_data.items():
