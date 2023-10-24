@@ -6,8 +6,8 @@ import math
 params = {
     'quant': 6802,
     'price': 744,
-    'elas': 0.67,
-    'x1': 1,
+    'elas': 1.4,
+    'x1': '?',
 }
 
 # This method takes all the parameters and calculates the missing one.
@@ -38,11 +38,12 @@ a = params['quant'] / (params['price'] ** -params['elas'])
 p_values = np.linspace(0, 1000, 100)
 q_demand_values = [isoelastic_demand(p, a, params['elas']) for p in p_values]
 
-# Define the vertical supply function (supply curve coming from x-axis)
+# Define the vertical supply function (supply curve coming from the x-axis)
 def vertical_supply(p):
     return params['quant']
 
 # Calculate supply quantity for the given price
+q_supply = vertical_supply(params['price'])
 q_supply_values = [vertical_supply(p) for p in p_values]
 
 # Plot the isoelastic demand and vertical supply curves
@@ -67,7 +68,7 @@ def counterfactual(params):
 
     if counterfactual_parameter == 'quant':
         params['quant'] *= (1 + (counterfactual_percent / 100))
-        # Adjust price while keeping elasticity constant
+        # Recalculate 'price' while keeping elasticity constant
         params['price'] = (params['quant'] / params['x1']) ** (-1 / params['elas'])
     elif counterfactual_parameter == 'price':
         params['price'] *= (1 + (counterfactual_percent / 100))
@@ -75,6 +76,8 @@ def counterfactual(params):
         params['elas'] *= (1 + (counterfactual_percent / 100))
     elif counterfactual_parameter == 'x1':
         params['x1'] *= (1 + (counterfactual_percent / 100))
+        # Recalculate 'price' to maintain consistency
+        params['price'] = (params['quant'] / params['x1']) ** (-1 / params['elas'])
     return params
 
 # Apply counterfactual to the parameters
@@ -83,6 +86,7 @@ print("Updated Parameters:", params)
 
 # Calculate demand quantity for the given price with updated parameters
 a = params['quant'] / (params['price'] ** -params['elas'])
+p_values = np.linspace(0, 1000, 100)  # Updated range for p_values
 q_demand_values = [isoelastic_demand(p, a, params['elas']) for p in p_values]
 
 # Plot the second graph (data after counterfactual changes)
