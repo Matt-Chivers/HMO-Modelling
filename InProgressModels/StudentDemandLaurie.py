@@ -1,9 +1,9 @@
 import math
-
+# Creating data the set  (x value = price values. y values = quant values)
 # Define a dictionary to hold the initial parameter values
 params = {
     'elas': .67,
-    'x1': 3,
+    'x1': 1284443.7,
 }
 
 # Define the student population dictionary
@@ -14,7 +14,6 @@ student_population = {
     '2021/22': 10425,
     # '2022/23': None,  # You can fill in the population for 2022/23 when you have the data
 }
-
 # Define the student population dictionary
 HMO_provision = {
     '2018/19': 13036,

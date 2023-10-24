@@ -3,10 +3,10 @@ import math
 
 # Define a dictionary to hold the initial parameter values
 params = {
-    'quant': 1,
-    'price': 1111,
-    'e': 1,
-    'a': 3,
+    'quant': .25,
+    'price': 0,
+    'e': -2,
+    'a': 16,
 }
 
 target_parameter = ""

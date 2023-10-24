@@ -33,7 +33,6 @@ params = {
     'x1': 1284443.7,
 }
 
-
 import numpy as np
 print(np.__version__)
 
