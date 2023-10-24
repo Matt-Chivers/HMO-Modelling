@@ -29,14 +29,14 @@ calculated_value = calculate_missing_parameter(params, target_parameter)
 print(f'{target_parameter}: {round(calculated_value, 2)}')
 
 # Define the isoelastic demand function
-def isoelastic_demand(p, x1, a, elas):
-    q = (x1 * a) * p ** (-elas)
+def isoelastic_demand(p, a, elas):
+    q = a * p ** (-elas)
     return q
 
 # Calculate demand quantity for the given price
 a = params['quant'] / (params['price'] ** -params['elas'])
 p_values = np.linspace(0, 1000, 100)
-q_demand_values = [isoelastic_demand(p, params['x1'], a, params['elas']) for p in p_values]
+q_demand_values = [isoelastic_demand(p, a, params['elas']) for p in p_values]
 
 # Define the vertical supply function (supply curve coming from x-axis)
 def vertical_supply(p):
@@ -83,7 +83,7 @@ print("Updated Parameters:", params)
 
 # Calculate demand quantity for the given price with updated parameters
 a = params['quant'] / (params['price'] ** -params['elas'])
-q_demand_values = [isoelastic_demand(p, params['x1'], a, params['elas']) for p in p_values]
+q_demand_values = [isoelastic_demand(p, a, params['elas']) for p in p_values]
 
 # Plot the second graph (data after counterfactual changes)
 plt.subplot(1, 2, 2)
