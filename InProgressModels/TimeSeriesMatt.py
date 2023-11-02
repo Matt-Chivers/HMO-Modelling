@@ -14,7 +14,7 @@ student_population = {
     '2019/20': 9224,
     '2020/21': 10119,
     '2021/22': 10425,
-    '2022/23': 10425,  # Updated population for 2022/23
+    '2022/23': 10425,  # Placeholder value until data is found
 }
 
 # Define the student population dictionary
