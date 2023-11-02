@@ -36,9 +36,9 @@ for academic_year, population in student_population.items():
     if population == 0:
         # Handle the case where population is 0 (or None) by skipping the calculation
         continue
-    price = (quant / (params['x1'] * population)) ** (-1 / params['elas'])
+    price = round((quant / (params['x1'] * population)) ** (-1 / params['elas']), 2)
     price_values.append(price)  # Append the calculated price to the list
-    print("Montly rental price for " + f"{academic_year}: {price}")
+    print("Montly rental price for " + f"{academic_year}: £{price}")
 
 # Must have 5 data points in each array
 x_data = np.array([2018, 2019, 2020, 2021, 2022])

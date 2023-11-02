@@ -6,7 +6,7 @@ import math
 params = {
     'quant': 6802,
     'price': 744,
-    'elas': 0.67,
+    'elas': 1.4,
     'x1': '?',
 }
 
@@ -23,6 +23,7 @@ def calculate_missing_parameter(params, target_parameter):
     elif target_parameter == 'x1':
         params[target_parameter] = params['quant'] / (params['price'] ** -params['elas'])
     return params[target_parameter]
+
 
 target_parameter = 'x1'  # Replace with the parameter you want to calculate
 calculated_value = calculate_missing_parameter(params, target_parameter)
