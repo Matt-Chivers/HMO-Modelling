@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import linregress
 import math
 
 # Define a dictionary to hold the initial parameter values
@@ -9,6 +10,54 @@ params = {
     'elas': 1.4,
     'x1': '?',
 }
+
+studentNumber = {
+    '2010': 7730 - 3649 ,
+    '2011': 7775 - 3836,
+    '2012': 7582 - 3518,
+    '2013': 7860 - 3722,
+    '2014': 8206 - 3574,
+    '2015': 8420 - 3752,
+    '2016': 8786 - 3783,
+    '2017': 9140 - 3798, 
+    '2018': 8983 - 3912,
+    '2019': 9227 - 4052,
+    '2020': 10120 - 3739,
+    '2021': 10426 - 4184,
+    '2022': 10468 - 4167,
+    '2023': 10234,
+} 
+
+# Extracting years and numbers for analysis
+years = list(map(int, studentNumber.keys()))
+numbers = list(studentNumber.values())
+
+# Remove the 2023 data for fitting
+years_for_fitting = years[:-1]
+numbers_for_fitting = numbers[:-1]
+
+# Linear regression
+slope, intercept, r_value, p_value, std_err = linregress(years_for_fitting, numbers_for_fitting)
+
+# Predicted value for 2023
+predicted_2023 = slope * 2023 + intercept
+
+# Plotting the data and the line of best fit
+plt.figure(figsize=(10, 6))
+plt.plot(years_for_fitting, numbers_for_fitting, 'o', label='Actual Data')
+plt.plot(years, [slope * x + intercept for x in years], 'r', label='Line of Best Fit')
+
+# Highlighting the predicted 2023 value
+plt.plot(2023, predicted_2023, 'go', label='Predicted 2023 Value')
+
+plt.xlabel('Year')
+plt.ylabel('Number of Students')
+plt.title('Student Numbers Over Years with Linear Regression')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+print(round(predicted_2023, 0))
 
 # This method takes all the parameters and calculates the missing one.
 def calculate_missing_parameter(params, target_parameter):
