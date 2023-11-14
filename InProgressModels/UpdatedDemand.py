@@ -7,7 +7,7 @@ import math
 params = {
     'quant': 6802,
     'price': 744,
-    'elas': 1.4,
+    'elas': 0.67,
     'x1': '?',
 }
 
@@ -57,7 +57,18 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-print(round(predicted_2023, 0))
+print('Predicted 2023 student number: ' + str(predicted_2023))
+
+# Determining the coefficient 'a' using the 2010 value from studentNumber
+# We assume that the 2010 student number is the demand at the original price level
+demand_2010 = studentNumber['2010']
+price = params['price']  # Original price
+elas = params['elas']   # Elasticity
+
+# Calculating 'a'
+a = demand_2010 / (price ** -elas)
+
+print('Value of a: ' + str(a))
 
 # This method takes all the parameters and calculates the missing one.
 def calculate_missing_parameter(params, target_parameter):
