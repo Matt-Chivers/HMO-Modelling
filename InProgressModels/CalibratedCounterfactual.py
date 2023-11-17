@@ -6,7 +6,7 @@ import math
 params = {
     'quant': 6802,
     'price': 744,
-    'elas': 1.4,
+    'elas': 0.67,
     'x1': '?',
 }
 
@@ -51,14 +51,14 @@ def calculate_missing_parameter(params, target_parameter):
         params[target_parameter] = params['quant'] / (params['price'] ** -params['elas'])
     return params[target_parameter]
 
-target_parameter = 'x1'  # Replace with the parameter you want to calculate
+target_parameter = 'quant'  # Replace with the parameter you want to calculate
 calculated_value = calculate_missing_parameter(params, target_parameter)
 print(f'{target_parameter}: {round(calculated_value, 2)}')
 
 # Apply counterfactual to the parameters based on demand shock from 2010 to 2011
 def counterfactual_demand_shock(params, studentNumber):
     # Calculate the demand shock
-    demand_shock = studentNumber['2011'] / studentNumber['2010']
+    demand_shock = studentNumber['2022'] / studentNumber['2010']
 
     # Apply the demand shock to coefficient 'a'
     a = params['quant'] / (params['price'] ** -params['elas'])

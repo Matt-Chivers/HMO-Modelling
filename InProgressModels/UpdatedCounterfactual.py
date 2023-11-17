@@ -6,7 +6,7 @@ import math
 params = {
     'quant': 6802,
     'price': 744,
-    'elas': 1.4,
+    'elas': 0.67,
     'x1': '?',
 }
 
