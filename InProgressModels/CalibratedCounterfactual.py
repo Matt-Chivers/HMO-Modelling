@@ -5,19 +5,13 @@ import math
 # Define a dictionary to hold the initial parameter values
 params = {
     'quant': 6802,
-    'price': 744,
+    'price': 991.67,
     'elas': 0.67,
-    'x1': '?',
+    'x1': 692153.84,
 }
 
 # Student number data
 studentNumber = {
-    '2010': 7730 - 3649,
-    '2011': 7775 - 3836,
-    '2012': 7582 - 3518,
-    '2013': 7860 - 3722,
-    '2014': 8206 - 3574,
-    '2015': 8420 - 3752,
     '2016': 8786 - 3783,
     '2017': 9140 - 3798, 
     '2018': 8983 - 3912,
@@ -26,6 +20,7 @@ studentNumber = {
     '2021': 10426 - 4184,
     '2022': 10468 - 4167,
     '2023': 10234,
+    '2027': 7346,
 }
 
 # Define the isoelastic demand function
@@ -58,7 +53,7 @@ print(f'{target_parameter}: {round(calculated_value, 2)}')
 # Apply counterfactual to the parameters based on demand shock from 2010 to 2011
 def counterfactual_demand_shock(params, studentNumber):
     # Calculate the demand shock
-    demand_shock = studentNumber['2022'] / studentNumber['2010']
+    demand_shock = studentNumber['2027'] / studentNumber['2016']
 
     # Apply the demand shock to coefficient 'a'
     a = params['quant'] / (params['price'] ** -params['elas'])
