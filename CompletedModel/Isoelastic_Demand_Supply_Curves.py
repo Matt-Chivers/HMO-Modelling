@@ -17,7 +17,7 @@ def calculate_x1(params):
 
 # Set initial parameters representing some economic scenario
 original_params = {
-    'quant': 6894,     # 2018 quantity 
+    'quant': 6802,     # 2018 quantity 
     'price': 992.67,     # 2018 price according to Ayton House
     'elas': 0.67,      # Assumed elasticity
     'x1': None         # Scalar value
@@ -49,11 +49,11 @@ params['price'] = new_equilibrium_price
 params['x1'] = params['quant'] / (params['price'] ** -params['elas'])
 
 # Modify quantity to reflect a counterfactual scenario
-params['quant'] = 6802 # According to Fife Council we have lost 122 HMO licenses since 2018
+params['quant'] = 6894 # According to Fife Council we have lost 122 HMO licenses since 2018
 params['price'] = (params['quant'] / params['x1']) ** (-1 / params['elas'])
 
 # Check that the calculated price matches an expected value
-assert round(params['price']) == 1401, f"Expected price to be approximately £1145, but got £{params['price']}"
+assert round(params['price']) == 1345, f"Expected price to be approximately £1145, but got £{params['price']}"
 
 # Calculate 'a' for original and updated parameters
 original_a = original_params['quant'] / (original_params['price'] ** -original_params['elas'])
