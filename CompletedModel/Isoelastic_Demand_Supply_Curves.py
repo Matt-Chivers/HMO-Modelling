@@ -17,8 +17,8 @@ def calculate_x1(params):
 
 # Set initial parameters representing some economic scenario
 original_params = {
-    'quant': 6802,     # 2018 quantity 
-    'price': 992.67,     # 2018 price according to Ayton House
+    'quant': 6924,     # 2018 quantity using previous progress report data for 2022 plus total change since HMO cap
+    'price': 992.67,   # 2018 price according to Ayton House
     'elas': 0.67,      # Assumed elasticity
     'x1': None         # Scalar value
 }
@@ -49,11 +49,11 @@ params['price'] = new_equilibrium_price
 params['x1'] = params['quant'] / (params['price'] ** -params['elas'])
 
 # Modify quantity to reflect a counterfactual scenario
-params['quant'] = 6894 # According to Fife Council we have lost 122 HMO licenses since 2018
+params['quant'] = 6802 # According to Fife Council we have lost 122 HMO licenses since 2018
 params['price'] = (params['quant'] / params['x1']) ** (-1 / params['elas'])
 
 # Check that the calculated price matches an expected value
-assert round(params['price']) == 1345, f"Expected price to be approximately £1145, but got £{params['price']}"
+assert round(params['price']) == 1410, f"Expected price to be approximately £1145, but got £{params['price']}"
 
 # Calculate 'a' for original and updated parameters
 original_a = original_params['quant'] / (original_params['price'] ** -original_params['elas'])
@@ -69,15 +69,15 @@ q_demand_values_updated = [isoelastic_demand(p, updated_a, params['elas']) for p
 # Begin plotting the demand and supply curves
 plt.figure(figsize=(10, 6))
 
-# Plot the 2022 demand curve and mark the equilibrium point
-plt.plot(q_demand_values_original, p_values, label='2022 Demand Curve', color='blue')
-plt.axvline(x=original_params['quant'], color='blue', linestyle='--', label='2022 Supply Curve')
-plt.scatter(original_params['quant'], original_params['price'], color='blue', label=f'2022 Equilibrium: (q={round(original_params["quant"])}, p={round(original_params["price"])})')
+# Plot the 2018 demand curve and mark the equilibrium point
+plt.plot(q_demand_values_original, p_values, label='2018 Demand Curve', color='red')
+plt.axvline(x=original_params['quant'], color='red', linestyle='--', label='2018 Supply Curve')
+plt.scatter(original_params['quant'], original_params['price'], color='red', label=f'2018 Equilibrium: (q={round(original_params["quant"])}, p={round(original_params["price"])})')
 
-# Plot the 2018 demand curve and mark the new equilibrium point
-plt.plot(q_demand_values_updated, p_values, label='2018 Demand Curve', color='red')
-plt.axvline(x=params['quant'], color='red', linestyle='--', label='2018 Supply Curve')
-plt.scatter(params['quant'], params['price'], color='red', label=f'2018 Equilibrium: (q={round(params["quant"])}, p={round(params["price"])})')
+# Plot the 2022 demand curve and mark the new equilibrium point
+plt.plot(q_demand_values_updated, p_values, label='2022 Demand Curve', color='blue')
+plt.axvline(x=params['quant'], color='blue', linestyle='--', label='2022 Supply Curve')
+plt.scatter(params['quant'], params['price'], color='blue', label=f'2022 Equilibrium: (q={round(params["quant"])}, p={round(params["price"])})')
 
 # Setting labels, title, and grid for the plot
 plt.xlabel('Quantity (q)')
