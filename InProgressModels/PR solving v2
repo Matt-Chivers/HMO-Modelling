@@ -1,0 +1,67 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+from scipy.optimize import fsolve
+
+# Define a dictionary to hold the initial parameter values for the first isoelastic demand equation
+paramseq1 = {
+    'quant': 6802,
+    'price': 991.67,
+    'elas': None,
+    'x1': None,
+}
+
+# Define a dictionary to hold the initial parameter values for the second isoelastic demand equation
+paramseq2 = {
+    'quant': 6924,
+    'price': 1144,
+    'elas': None,
+    'x1': None,
+}
+
+# Student number data
+studentNumber = {
+    '2016': 8786 - 3783,
+    '2017': 9140 - 3798,
+    '2018': 8983 - 3912,
+    '2019': 9227 - 4052,
+    '2020': 10120 - 3739,
+    '2021': 10426 - 4184,
+    '2022': 10468 - 4167,
+    '2023': 10234,
+    '2027': 7346,
+}
+
+# Define the isoelastic demand function
+def isoelastic_demand(p, a, elas):
+    q = a * p ** (-elas)
+    return q
+
+# Function to represent the system of equations for the first isoelastic demand equation
+def equations1(vars, quant, price):
+    x1, elas = vars
+    return [
+        quant - x1 * price**-elas,
+    ]
+
+# Function to represent the system of equations for the second isoelastic demand equation
+def equations2(vars, quant, price):
+    x1, elas = vars
+    return [
+        quant - x1 * price**-elas,
+    ]
+
+# Solve for x1 and elas for the first isoelastic demand equation
+result1 = fsolve(equations1, [1, 1], args=(paramseq1['quant'], paramseq1['price']))
+paramseq1['x1'], paramseq1['elas'] = result1
+
+# Solve for x1 and elas for the second isoelastic demand equation
+result2 = fsolve(equations2, [1, 1], args=(paramseq2['quant'], paramseq2['price']))
+paramseq2['x1'], paramseq2['elas'] = result2
+
+# Print the results for the first isoelastic demand equation
+print("Result for paramseq1:", paramseq1)
+
+# Print the results for the second isoelastic demand equation
+print("Result for paramseq2:", paramseq2)
+
