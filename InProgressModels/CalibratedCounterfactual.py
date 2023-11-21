@@ -5,9 +5,9 @@ import math
 # Define a dictionary to hold the initial parameter values
 params = {
     'quant': 6802,
-    'price': '?',
+    'price': 1145,
     'elas': 0.67,
-    'x1': 761995.54,
+    'x1': '?', #761995.54,#
 }
 
 # Student number data
@@ -46,7 +46,7 @@ def calculate_missing_parameter(params, target_parameter):
         params[target_parameter] = params['quant'] / (params['price'] ** -params['elas'])
     return params[target_parameter]
 
-target_parameter = 'price'  # Replace with the parameter you want to calculate
+target_parameter = 'x1'  # Replace with the parameter you want to calculate
 calculated_value = calculate_missing_parameter(params, target_parameter)
 print(f'{target_parameter}: {round(calculated_value, 2)}')
 
