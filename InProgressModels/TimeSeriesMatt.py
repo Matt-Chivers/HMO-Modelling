@@ -10,11 +10,11 @@ params = {
 
 # Define the student population dictionary
 student_population = {
-    '2018/19': 8984,
+    '2018/19': ,
     '2019/20': 9224,
     '2020/21': 10119,
     '2021/22': 10425,
-    '2022/23': 10425,  # Placeholder value until data is found
+    '2022/23': 10468 - 4167,  
 }
 
 # Define the student population dictionary
