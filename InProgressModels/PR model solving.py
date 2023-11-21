@@ -7,40 +7,37 @@ from scipy.optimize import fsolve
 paramseq1 = {
     'quant': 6802,
     'price': 991.67,
-    'elas': ,
-    'x1': ,
+    'elas': '?',
+    'x1': '?',
 }
+
 # Define a dictionary to hold the initial parameter values
 paramseq2 = {
     'quant': 6924,
     'price': 1144,
-    'elas': ,
-    'x1': ,
+    'elas': '?',
+    'x1': '?',
 }
-# Student number data
-studentNumber = {
-    '2018': 8983 - 3912,
-    '2022': 10468 - 4167,
-}
+
 # Function to represent the system of equations
 def equations(vars, quant, price):
-    x1, elas = vars
-    return [
-        quant - x1* price**-elas,
-    ]
-# Solve for x1 and elas for paramseq1
-result1 = fsolve(equations, [1, 1], args=(paramseq1['quant'], paramseq1['price']))
+    x1 = vars
+    return quant - x1 * price**-1  # Assuming elas is -1
 
-# Solve for x1 and elas for paramseq2
-result2 = fsolve(equations, [1, 1], args=(paramseq2['quant'], paramseq2['price']))
+# Solve for x1 for paramseq1
+result1 = fsolve(equations, [1], args=(paramseq1['quant'], paramseq1['price']))
+
+# Solve for x1 for paramseq2
+result2 = fsolve(equations, [1], args=(paramseq2['quant'], paramseq2['price']))
 
 # Update the dictionaries with the results
-paramseq1['x1'], paramseq1['elas'] = result1
-paramseq2['x1'], paramseq2['elas'] = result2
+paramseq1['x1'] = result1[0]
+paramseq2['x1'] = result2[0]
 
 # Print the results
 print("Result for paramseq1:", paramseq1)
 print("Result for paramseq2:", paramseq2)
+
 
 
 # # Define the isoelastic demand function
