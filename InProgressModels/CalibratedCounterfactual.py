@@ -5,22 +5,22 @@ import math
 # Define a dictionary to hold the initial parameter values
 params = {
     'quant': 6802,
-    'price': 991.67,
+    'price': '?',
     'elas': 0.67,
-    'x1': 692153.84,
+    'x1': 761995.54,
 }
 
 # Student number data
 studentNumber = {
-    '2016': 8786 - 3783,
-    '2017': 9140 - 3798, 
+    # '2016': 8786 - 3783,
+    # '2017': 9140 - 3798, 
     '2018': 8983 - 3912,
     '2019': 9227 - 4052,
     '2020': 10120 - 3739,
     '2021': 10426 - 4184,
     '2022': 10468 - 4167,
-    '2023': 10234,
-    '2027': 7346,
+    # '2023': 10234,
+    # '2027': 7346,
 }
 
 # Define the isoelastic demand function
@@ -46,14 +46,14 @@ def calculate_missing_parameter(params, target_parameter):
         params[target_parameter] = params['quant'] / (params['price'] ** -params['elas'])
     return params[target_parameter]
 
-target_parameter = 'quant'  # Replace with the parameter you want to calculate
+target_parameter = 'price'  # Replace with the parameter you want to calculate
 calculated_value = calculate_missing_parameter(params, target_parameter)
 print(f'{target_parameter}: {round(calculated_value, 2)}')
 
 # Apply counterfactual to the parameters based on demand shock from 2010 to 2011
 def counterfactual_demand_shock(params, studentNumber):
     # Calculate the demand shock
-    demand_shock = studentNumber['2027'] / studentNumber['2016']
+    demand_shock = studentNumber['2018'] / studentNumber['2022']
 
     # Apply the demand shock to coefficient 'a'
     a = params['quant'] / (params['price'] ** -params['elas'])
