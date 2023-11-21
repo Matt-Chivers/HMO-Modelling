@@ -17,8 +17,8 @@ def calculate_x1(params):
 
 # Set initial parameters representing some economic scenario
 original_params = {
-    'quant': 6802,     # 2022 quantity according to Fife Council
-    'price': 1145,     # 2022 price according to Ayton House
+    'quant': 6894,     # 2022 quantity 
+    'price': 992.67,     # 2022 price according to Ayton House
     'elas': 0.67,      # Assumed elasticity
     'x1': None         # Scalar value
 }
@@ -37,7 +37,7 @@ students_not_in_halls_number = {
 
 # Function to simulate the effect of a demand shock, adjusting the parameters accordingly
 def counterfactual_demand_shock(params, students_not_in_halls_number):
-    demand_shock = students_not_in_halls_number['2018'] / students_not_in_halls_number['2022']
+    demand_shock = students_not_in_halls_number['2022'] / students_not_in_halls_number['2018']
     a = params['x1']
     a *= demand_shock
     new_equilibrium_price = (params['quant'] / a) ** (-1 / params['elas'])
