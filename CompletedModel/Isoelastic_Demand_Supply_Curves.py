@@ -17,9 +17,9 @@ def calculate_x1(params):
 
 # Set initial parameters representing some economic scenario
 original_params = {
-    'quant': 6924,     # 2018 quantity using previous progress report data for 2022 plus total change since HMO cap
-    'price': 992.67,   # 2018 price according to Ayton House
-    'elas': 0.67,      # Assumed elasticity
+    'quant': 6924,     # 2018 quantity 
+    'price': 992.67,     # 2018 price according to Ayton House
+    'elas': 0.4,      # Assumed elasticity
     'x1': None         # Scalar value
 }
 
@@ -53,7 +53,7 @@ params['quant'] = 6802 # According to Fife Council we have lost 122 HMO licenses
 params['price'] = (params['quant'] / params['x1']) ** (-1 / params['elas'])
 
 # Check that the calculated price matches an expected value
-assert round(params['price']) == 1410, f"Expected price to be approximately £1145, but got £{params['price']}"
+assert round(params['price']) == 1786, f"Expected price to be approximately £1145, but got £{params['price']}"
 
 # Calculate 'a' for original and updated parameters
 original_a = original_params['quant'] / (original_params['price'] ** -original_params['elas'])
@@ -82,7 +82,7 @@ plt.scatter(params['quant'], params['price'], color='blue', label=f'2022 Equilib
 # Setting labels, title, and grid for the plot
 plt.xlabel('Quantity (q)')
 plt.ylabel('Price £ (p)')
-plt.title('Isoelastic Demand and Supply Curves: Original vs Counterfactual')
+plt.title('Isoelastic Demand and Supply Curves: Original vs Counterfactual elasticity = 0.67')
 plt.legend()
 plt.grid(True)
 plt.xlim(0, 10000)
