@@ -18,8 +18,8 @@ def calculate_x1(params):
 # Set initial parameters representing some economic scenario
 original_params = {
     'quant': 6924,     # 2018 quantity 
-    'price': 992.67,     # 2018 price according to Ayton House
-    'elas': 0.4,      # Assumed elasticity
+    'price': 692,     # 2018 price according to Ayton House
+    'elas': 0.67,      # Assumed elasticity
     'x1': None         # Scalar value
 }
 
@@ -28,8 +28,8 @@ original_params['x1'] = calculate_x1(original_params)
 
 # Dictionary to hold student number data for different years
 students_not_in_halls_number = {
-    '2018': 8983 - 3912,
-    '2022': 10468 - 4167,
+    '2018': 5071,
+    '2022': 6031,
 }
 
 # Function to simulate the effect of a demand shock, adjusting the parameters accordingly
@@ -53,7 +53,7 @@ params['quant'] = 6802 # According to Fife Council we have lost 122 HMO licenses
 params['price'] = (params['quant'] / params['x1']) ** (-1 / params['elas'])
 
 # Check that the calculated price matches an expected value
-assert round(params['price']) == 1786, f"Expected price to be approximately £1145, but got £{params['price']}"
+assert round(params['price']) == 1410, f"Expected price to be approximately £1145, but got £{params['price']}"
 
 # Calculate 'a' for original and updated parameters
 original_a = original_params['quant'] / (original_params['price'] ** -original_params['elas'])
